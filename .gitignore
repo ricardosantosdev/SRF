@@ -96,5 +96,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 __pycache__/
+*.pyc
 
 # End of https://www.gitignore.io/api/venv,pycharm
