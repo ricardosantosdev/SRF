@@ -38,6 +38,7 @@ class Aplication:
         # Button for search
         self.btn_search = Button(self.main_container, text="Buscar", fg="white", background="#2C3E50",
                                  activebackground="#1C2833", activeforeground="white", command=self.browser_dir)
+        self.btn_search.bind("<Return>", self.browser_dir)
         self.btn_search.pack(side=RIGHT)
 
         # Entry for current directory
@@ -59,7 +60,7 @@ class Aplication:
 
         # Input character
         self.input_character = Entry(self.second_container)
-        self.input_character.pack()
+        self.input_character.pack(ipady=3)
 
         # End of Second container
 
@@ -68,21 +69,20 @@ class Aplication:
         # Button Rip
         self.btn_rip = Button(self.third_container, text="RIP", fg="white", background="#2C3E50",
                               activebackground="#1C2833", activeforeground="white", width=8, command=self.to_cleaner)
+        self.btn_rip.focus_force()
+        self.btn_rip.bind("<Return>", self.to_cleaner)
         self.btn_rip.pack()
 
         # End of Third container
 
     # Methods and functions
-    def to_cleaner(self):
-        for self.file in glob.glob(self.receive_cleaner()):
+    def to_cleaner(self, event=None):
+        for self.file in glob.glob(self.input_character.get()):
             print(self.file)
             os.remove(self.file)
 
-    def receive_cleaner(self):
-        return self.input_character.get()
-
-    def browser_dir(self):
-        folder = askdirectory(initialdir='~/Downloads')
+    def browser_dir(self, event=None):
+        folder = askdirectory()
         os.chdir(folder)
         self.dir_str = folder
         self.txt_output.delete(0, END)
