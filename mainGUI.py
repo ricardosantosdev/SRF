@@ -54,7 +54,7 @@ class Aplication:
                                                              "caracteres:", pady=10, background="#ebedee")
         self.input_title.pack()
 
-        self.input_examples = Label(self.second_container, text="exemplos: x*.jpg ou (2).mp4", background="#ebedee")
+        self.input_examples = Label(self.second_container, text="exemplos: *x*.jpg ou (2).mp4", background="#ebedee")
         self.input_examples.pack()
 
         # Input character
