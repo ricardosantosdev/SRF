@@ -5,27 +5,15 @@ import glob
 
 
 def current_directory():
-    """
-    :return: Mostra na tela o diretório atual.
-    """
     return os.getcwd()
 
 
-def navigator(direct):
-    """
-    :param direct:
-    :return: Seta o diretório inserido pelo usuário.
-    """
-    return os.chdir(direct)
+def browser(dir):
+    return os.chdir(dir)
 
 
-def to_cleaner(filtering):
-    """
-    :param filtering:
-    :return: Exclui os arquivos setados pelo usuário com uma string
-    através do parâmetro filtering.
-    """
-    for file in glob.glob(filtering):
+def to_cleaner(char):
+    for file in glob.glob(char):
         print(file)
         os.remove(file)
 

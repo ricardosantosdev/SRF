@@ -72,7 +72,7 @@ class Aplication:
 
         # End of Third container
 
-    # Methods
+    # Methods and functions
     def to_cleaner(self):
         for self.file in glob.glob(self.receive_cleaner()):
             print(self.file)
