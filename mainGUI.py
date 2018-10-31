@@ -1,6 +1,8 @@
+# coding: utf-8
 import os
 import glob
 from tkinter import *
+from tkinter.filedialog import askdirectory
 
 
 class Aplication:
@@ -34,12 +36,14 @@ class Aplication:
         self.browser_title.pack()
 
         # Button for search
-        self.btn_search = Button(self.main_container, text="Buscar", background="#9dc419")
+        self.btn_search = Button(self.main_container, text="Buscar", fg="white", background="#2C3E50",
+                                 activebackground="#1C2833", activeforeground="white", command=self.browser_dir)
         self.btn_search.pack(side=RIGHT)
 
-        # Label for current directory
-        self.print_current_directory = Label(self.main_container, text=os.getcwd(), background="#ebedee")
-        self.print_current_directory.pack(side=LEFT)
+        # Entry for current directory
+        self.dir_str = StringVar()
+        self.txt_output = Entry(self.main_container, width=40, textvariable=self.dir_str)
+        self.txt_output.pack(side=LEFT, ipady=3)
 
         # End of Main container
 
@@ -50,7 +54,7 @@ class Aplication:
                                                              "caracteres:", pady=10, background="#ebedee")
         self.input_title.pack()
 
-        self.input_examples = Label(self.second_container, text="use examples: x*.jpg and (2).jpg", background="#ebedee")
+        self.input_examples = Label(self.second_container, text="exemplos: x*.jpg and (2).jpg", background="#ebedee")
         self.input_examples.pack()
 
         # Input character
@@ -62,8 +66,11 @@ class Aplication:
         # Third container
 
         # Button Rip
-        self.btn_rip = Button(self.third_container, text="RIP", background="#9dc419", width=8, command=self.to_cleaner)
+        self.btn_rip = Button(self.third_container, text="RIP", fg="white", background="#2C3E50",
+                              activebackground="#1C2833", activeforeground="white", width=8, command=self.to_cleaner)
         self.btn_rip.pack()
+
+        # End of Third container
 
     # Methods
     def to_cleaner(self):
@@ -73,6 +80,13 @@ class Aplication:
 
     def receive_cleaner(self):
         return self.input_character.get()
+
+    def browser_dir(self):
+        folder = askdirectory(initialdir='~/Downloads')
+        os.chdir(folder)
+        self.dir_str = folder
+        self.txt_output.delete(0, END)
+        self.txt_output.insert(0, self.dir_str)
 
 
 root = Tk()
