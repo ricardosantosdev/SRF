@@ -54,7 +54,7 @@ class Aplication:
                                                              "caracteres:", pady=10, background="#ebedee")
         self.input_title.pack()
 
-        self.input_examples = Label(self.second_container, text="exemplos: x*.jpg and (2).jpg", background="#ebedee")
+        self.input_examples = Label(self.second_container, text="exemplos: x*.jpg ou (2).mp4", background="#ebedee")
         self.input_examples.pack()
 
         # Input character
@@ -91,6 +91,8 @@ class Aplication:
 
 root = Tk()
 root.title("SRF (Simple Rip Files)")
+root.geometry('460x280')
+root.resizable(0, 0)
 root["bg"] = "#ebedee"
 Aplication(root)
 root.mainloop()
